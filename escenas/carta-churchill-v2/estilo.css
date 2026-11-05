@@ -1,0 +1,48 @@
+/* La carta · v2 — lenguaje «Enigma en grabado y tinta»: siluetas planas, crema/tinta/rojo/oro, el mundo hecho de rotores y letras. */
+:root{ --crema:#F1EADB; --crema-2:#E6DCC6; --tinta:#0A1F2E; --rojo:#C8102E; --oro:#E7B53A; --verde:#00A080; --azul:#1F6F86; --forma-3:#3DD9B0; --luz:#F5F3EF;
+  --f-display:'Fraunces', Georgia, serif; --f-texto:'IBM Plex Sans', system-ui, sans-serif; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:#05121B; color:var(--luz); font-family:var(--f-texto); }
+.sala{ min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:16px; }
+.pantalla{ position:relative; margin:0; width:min(100%, calc((100dvh - 150px) * 16 / 9)); aspect-ratio:16/9; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.6); background:var(--crema); }
+#lienzo{ width:100%; height:100%; display:block; }
+#fondo{ fill:var(--crema); }
+#subtitulo{ position:absolute; left:50%; bottom:4.5%; transform:translateX(-50%); width:min(88%, 1150px); text-align:center; font-family:var(--f-display); font-weight:600;
+  font-size:clamp(14px, 2.15vw, 36px); line-height:1.22; color:var(--tinta); text-wrap:balance; padding:6px 16px; border-radius:10px; background:rgba(241,234,219,.88); width:auto; max-width:min(88%, 1150px); }
+#subtitulo.claro{ color:var(--luz); background:rgba(10,31,46,.72); }
+#subtitulo em{ font-style:italic; color:var(--rojo); } #subtitulo.claro em{ color:var(--oro); }
+.nota{ position:absolute; right:4%; top:22%; margin:0; max-width:32%; font-family:var(--f-texto); font-size:clamp(11px, 1.1vw, 18px); line-height:1.35; color:var(--tinta);
+  background:rgba(241,234,219,.92); border-left:4px solid var(--oro); padding:10px 14px; border-radius:0 8px 8px 0; opacity:0; }
+.nota b{ display:block; font-size:.78em; letter-spacing:.14em; text-transform:uppercase; color:#8A4B00; margin-bottom:4px; }
+.control{ display:flex; align-items:center; gap:12px; width:min(100%, 900px); }
+#btn-play{ width:44px; height:44px; border-radius:50%; border:0; background:var(--luz); color:var(--tinta); font-size:16px; cursor:pointer; flex:none; }
+#btn-play:focus-visible, #tiempo:focus-visible{ outline:2px solid var(--forma-3); outline-offset:3px; }
+#tiempo{ flex:1; accent-color:var(--rojo); }
+#reloj{ font-variant-numeric:tabular-nums; font-size:14px; color:#AFC2CB; min-width:84px; text-align:right; }
+.fuente{ margin:0; font-size:12px; color:#7F98A6; text-align:center; max-width:900px; }
+html.incrustada .control, html.incrustada .fuente{ display:none; }
+html.incrustada .sala{ padding:0; } html.incrustada .pantalla{ width:100%; border-radius:0; box-shadow:none; }
+
+/* trazos */
+.guilloche path{ fill:none; stroke-width:1.1; }
+.tinta{ fill:var(--tinta); } .rojo{ fill:var(--rojo); } .oro{ fill:var(--oro); } .crema{ fill:var(--crema); }
+.rotor-aro{ fill:none; stroke:var(--tinta); stroke-width:6; } .rotor-diente{ fill:var(--tinta); }
+.rotor-letra{ font-family:var(--f-texto); font-weight:600; font-size:22px; fill:var(--tinta); }
+.letra{ font-family:var(--f-texto); font-weight:600; font-size:20px; }
+.titulo-grande{ font-family:var(--f-display); font-weight:600; font-size:120px; fill:var(--tinta); }
+.titulo-ceja{ font-family:var(--f-texto); font-weight:600; font-size:26px; letter-spacing:.24em; fill:var(--rojo); }
+.papel{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:3; }
+.renglon{ stroke:#B9AE98; stroke-width:3; }
+.papel-texto{ font-family:'Courier New', monospace; font-size:26px; fill:var(--tinta); }
+.sello{ fill:none; stroke:var(--rojo); stroke-width:8; } .sello-texto{ font-family:var(--f-texto); font-weight:700; font-size:58px; letter-spacing:.08em; fill:var(--rojo); }
+.etiqueta{ fill:var(--rojo); } .etiqueta-texto{ font-family:var(--f-texto); font-weight:700; font-size:56px; letter-spacing:.06em; fill:#FBF7EE; }
+.franja-texto{ font-family:var(--f-display); font-weight:600; font-size:34px; fill:var(--luz); }
+.franja-quien{ font-family:var(--f-texto); font-weight:600; font-size:20px; letter-spacing:.2em; fill:var(--luz); }
+.marca-x{ fill:none; stroke:var(--luz); stroke-width:12; stroke-linecap:round; }
+.marca-v{ fill:none; stroke:var(--oro); stroke-width:16; stroke-linecap:round; stroke-linejoin:round; }
+.sobre{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:3; } .sobre-pliegue{ fill:none; stroke:var(--tinta); stroke-width:3; }
+.escalon{ stroke:var(--tinta); stroke-width:3; stroke-dasharray:2 10; stroke-linecap:round; }
+.firma{ font-family:var(--f-display); font-style:italic; font-size:30px; fill:var(--tinta); }
+.aro{ fill:none; stroke:var(--oro); stroke-width:5; }
+.triangulo{ fill:var(--forma-3); stroke:var(--tinta); stroke-width:5; stroke-linejoin:round; }
+.etiqueta-pelicula{ font-family:var(--f-texto); font-weight:600; font-size:20px; letter-spacing:.16em; fill:#8A4B00; }

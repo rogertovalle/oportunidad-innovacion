@@ -1,0 +1,57 @@
+/* La carta a Churchill · escena animada (ilustración propia, registro tinta/noche de Victoriia Studio) */
+:root{ --noche:#0A1F2E; --noche-2:#12304A; --luz:#F5F3EF; --luz-tenue:#AFC2CB; --oro:#F9C333; --rojo:#C8102E; --forma-3:#3DD9B0;
+  --f-display:'Fraunces', Georgia, serif; --f-texto:'IBM Plex Sans', system-ui, sans-serif; --f-maquina:'Courier New', 'Courier', monospace; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:#05121B; color:var(--luz); font-family:var(--f-texto); }
+.sala{ min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:16px; }
+.pantalla{ position:relative; margin:0; width:min(100%, calc((100dvh - 150px) * 16 / 9)); aspect-ratio:16/9; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.6); background:#06131D; }
+#lienzo{ width:100%; height:100%; display:block; }
+#subtitulo{ position:absolute; left:50%; bottom:4%; padding:6px 14px; border-radius:8px; background:rgba(6,19,29,.55); transform:translateX(-50%); width:min(86%, 1100px); text-align:center; font-family:var(--f-display); font-weight:600;
+  font-size:clamp(14px, 2.1vw, 34px); line-height:1.25; color:var(--luz); text-shadow:0 2px 18px rgba(0,0,0,.85); text-wrap:balance; transition:opacity 180ms cubic-bezier(.2,0,0,1); }
+#subtitulo em{ color:var(--oro); font-style:italic; }
+.control{ display:flex; align-items:center; gap:12px; width:min(100%, 900px); }
+#btn-play{ width:44px; height:44px; border-radius:50%; border:0; background:var(--luz); color:var(--noche); font-size:16px; cursor:pointer; flex:none; }
+#btn-play:focus-visible, #tiempo:focus-visible{ outline:2px solid var(--forma-3); outline-offset:3px; }
+#tiempo{ flex:1; accent-color:var(--oro); }
+#reloj{ font-variant-numeric:tabular-nums; font-size:14px; color:var(--luz-tenue); min-width:84px; text-align:right; }
+.fuente{ margin:0; font-size:12px; color:#7F98A6; text-align:center; max-width:900px; }
+html.incrustada .control, html.incrustada .fuente{ display:none; }
+html.incrustada .sala{ padding:0; } html.incrustada .pantalla{ width:100%; border-radius:0; box-shadow:none; }
+
+/* dibujo */
+#estrellas circle{ fill:#F5F3EF; }
+.arbol{ fill:#071722; }
+.cabana{ fill:#0B2233; stroke:#1C3A50; stroke-width:2; }
+.techo{ fill:none; stroke:#2C4A60; stroke-width:4; stroke-linejoin:round; }
+.ventana{ fill:#102C40; stroke:#1C3A50; stroke-width:2; }
+.ventana.encendida{ fill:#F9C333; }
+.suelo{ fill:#071722; }
+.pared{ fill:#0E2536; }
+.pared-clara{ fill:#EFE9DD; }
+.mesa{ fill:#3A2A1C; }
+.lampara{ fill:#1C3A50; }
+.persona{ fill:#06131D; }
+.mensaje{ fill:#EFE9DD; stroke:#AFA898; stroke-width:1; }
+.contador, .contador-et{ display:none; }
+.hoja{ stroke:#D9D3C5; stroke-width:2; }
+.carta-cabeza{ font-family:var(--f-maquina); font-size:17px; letter-spacing:.08em; fill:#7A1020; font-weight:700; }
+.carta-linea{ font-family:var(--f-maquina); font-size:25px; fill:#1A1A1A; }
+.carta-linea.tenue{ fill:#5A5A5A; }
+.carta-fecha{ font-family:var(--f-maquina); font-size:20px; fill:#3A3A3A; }
+.firma{ font-family:var(--f-display); font-style:italic; font-size:26px; fill:#0A1F2E; }
+.aro{ fill:none; stroke:var(--oro); stroke-width:4; }
+.me-cuerpo{ fill:#16374F; stroke:#2C4A60; stroke-width:2; }
+.me-rodillo{ fill:#0A1F2E; stroke:#3E6178; stroke-width:2; }
+.tecla{ fill:#0A1F2E; stroke:#AFC2CB; stroke-width:1.5; }
+.tecla.on{ fill:#F9C333; }
+.costa{ fill:#E2D9C6; stroke:#B8AC94; stroke-width:2; }
+.ciudad{ fill:#F5F3EF; } .ciudad.destino{ fill:#F9C333; } .ciudad-et{ font-family:var(--f-display); font-size:34px; font-weight:600; fill:#F5F3EF; }
+.reticula path{ stroke:rgba(175,194,203,.08); stroke-width:1; }
+.ruta{ fill:none; stroke:#F9C333; stroke-width:4; stroke-dasharray:10 12; opacity:.8; }
+.sobre{ fill:#FBFAF6; stroke:#0A1F2E; stroke-width:2; } .sobre-pliegue{ fill:none; stroke:#0A1F2E; stroke-width:2; }
+.puerta{ fill:#0B0F12; stroke:#2A2F33; stroke-width:3; } .puerta-arco{ fill:none; stroke:#2A2F33; stroke-width:3; }
+.puerta-num{ font-family:var(--f-display); font-size:72px; font-weight:600; fill:#E9D9A0; } .pomo{ fill:#C9A54A; }
+.etiqueta{ fill:var(--rojo); } .etiqueta-texto{ font-family:var(--f-texto); font-weight:700; font-size:52px; letter-spacing:.06em; fill:#FBFAF6; }
+.bombe{ fill:#16374F; stroke:#3E6178; stroke-width:2; } .tambor{ fill:#0A1F2E; stroke:#AFC2CB; stroke-width:2; }
+.tambor-raya{ stroke:#AFC2CB; stroke-width:2; }
+.signo{ fill:var(--forma-3); stroke:#F5F3EF; stroke-width:4; stroke-linejoin:round; }

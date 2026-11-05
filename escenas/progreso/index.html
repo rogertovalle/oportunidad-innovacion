@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El progreso · escena animada</title>
+<meta name="description" content="Paso 5 · la idea como progreso: Turing y Joan le presentan al jefe del servicio secreto la idea en su idioma —secreto, ventaja, control— y nace Ultra. Escena animada con ilustración propia.">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="estilo.css">
+<script src="escena.js" defer></script>
+</head>
+<body>
+<main class="sala">
+  <figure class="pantalla">
+    <svg id="lienzo" viewBox="0 0 1600 900" role="img" aria-labelledby="e-titulo e-desc">
+      <title id="e-titulo">El progreso: el secreto y la historia falsa</title>
+      <desc id="e-desc">Animación en siluetas: Turing y Joan viajan de noche en tren con el secreto de Enigma; en un salón de té se reúnen con el jefe del servicio secreto; la misma idea cambia de traje, de máquina a control, ventaja y secreto; la estadística decide qué barcos salvar para no delatarse; una historia de cobertura tapa el mensaje real; se sella el expediente Ultra; las piezas se juntan en la flecha del progreso. En la vida real, Ultra protegía su fuente con coberturas como un avión de reconocimiento.</desc>
+      <defs>
+        <filter id="f-grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .09 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+        <path id="p-sello" d="M0 -66A66 66 0 1 1 -0.1 -66"/>
+      </defs>
+      <rect id="fondo" width="1600" height="900"/>
+      <g id="mundo"></g>
+      <g id="letras-sueltas"></g>
+      <rect width="1600" height="900" filter="url(#f-grano)" fill="#000" pointer-events="none"/>
+      <rect id="cortina" width="1600" height="900" fill="#0A1F2E" opacity="1"/>
+    </svg>
+    <figcaption id="subtitulo" aria-live="polite"></figcaption>
+    <p id="nota" class="nota" aria-live="polite"></p>
+  </figure>
+  <div class="control" role="group" aria-label="Control de la escena">
+    <button type="button" id="btn-play" aria-label="Reproducir">▶</button>
+    <input type="range" id="tiempo" min="0" max="48" step="0.05" value="0" aria-label="Tiempo de la escena">
+    <span id="reloj">0:00 / 0:48</span>
+  </div>
+  <p class="fuente">Ilustración y textos propios. Cuenta el paso como lo plantea la película (<i>The Imitation Game</i>, 2014) y agrega lo que pasó en la vida real (Ultra y el servicio secreto británico, SIS/MI6).</p>
+</main>
+</body>
+</html>

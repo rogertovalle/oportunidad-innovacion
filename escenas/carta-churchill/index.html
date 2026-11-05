@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La carta a Churchill · escena animada</title>
+<meta name="description" content="Octubre de 1941: cuatro criptógrafos de Bletchley Park le escriben directamente a Churchill. Escena animada con ilustración propia.">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="estilo.css">
+<script src="escena.js" defer></script>
+</head>
+<body>
+<main class="sala">
+  <figure class="pantalla" id="pantalla">
+    <svg id="lienzo" viewBox="0 0 1600 900" role="img" aria-labelledby="escena-titulo escena-desc">
+      <title id="escena-titulo">La carta a Churchill, octubre de 1941</title>
+      <desc id="escena-desc">Escena animada: de noche en Bletchley Park faltan manos y los mensajes se acumulan; cuatro criptógrafos escriben una carta directamente al Primer Ministro, uno de ellos la lleva a Downing Street, Churchill responde «Action this day» y llegan las máquinas y las personas.</desc>
+      <defs>
+        <linearGradient id="g-cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#06131D"/><stop offset=".7" stop-color="#0E2A3D"/><stop offset="1" stop-color="#16374F"/></linearGradient>
+        <radialGradient id="g-ventana" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F9C333" stop-opacity=".55"/><stop offset="1" stop-color="#F9C333" stop-opacity="0"/></radialGradient>
+        <linearGradient id="g-cono" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBE6A8" stop-opacity=".55"/><stop offset="1" stop-color="#FBE6A8" stop-opacity="0"/></linearGradient>
+        <linearGradient id="g-papel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBFAF6"/><stop offset="1" stop-color="#EEE8DC"/></linearGradient>
+        <filter id="f-grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .07 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+        <clipPath id="c-hoja"><rect x="460" y="100" width="680" height="560"/></clipPath>
+      </defs>
+
+      <!-- fondo nocturno, siempre -->
+      <rect width="1600" height="900" fill="url(#g-cielo)"/>
+      <g id="estrellas"></g>
+
+      <!-- I · exterior: la cabaña de noche -->
+      <g id="exterior">
+        <path class="arbol" d="M60 720c10-120 40-200 70-240 30 40 60 120 70 240zM1380 720c14-150 50-250 90-300 40 50 76 150 90 300z"/>
+        <path class="cabana" d="M240 720V560l160-70h800l160 70v160z"/>
+        <path class="techo" d="M228 566l172-84h800l172 84"/>
+        <g id="ventanas">
+          <rect class="ventana" x="330" y="600" width="70" height="56"/><rect class="ventana" x="470" y="600" width="70" height="56"/>
+          <rect class="ventana encendida" x="610" y="600" width="70" height="56"/><rect class="ventana" x="750" y="600" width="70" height="56"/>
+          <rect class="ventana" x="890" y="600" width="70" height="56"/><rect class="ventana" x="1030" y="600" width="70" height="56"/>
+          <rect class="ventana" x="1170" y="600" width="70" height="56"/>
+        </g>
+        <circle id="halo-ventana" cx="645" cy="628" r="120" fill="url(#g-ventana)"/>
+        <rect class="suelo" x="0" y="720" width="1600" height="180"/>
+      </g>
+
+      <!-- II · interior: faltan manos, los mensajes se acumulan -->
+      <g id="interior">
+        <rect class="pared" width="1600" height="900"/>
+        <path class="mesa" d="M240 640h1120l40 40H200z"/>
+        <polygon id="cono" points="760,150 840,150 1080,640 520,640" fill="url(#g-cono)"/>
+        <path class="lampara" d="M770 110h60l14 40h-88zM798 60h4v50h-4z"/>
+        <g id="personas">
+          <g class="persona" transform="translate(470 520)"><circle cx="0" cy="-70" r="30"/><path d="M-56 120c0-80 22-150 56-150s56 70 56 150z"/></g>
+          <g class="persona" transform="translate(640 500)"><circle cx="0" cy="-70" r="30"/><path d="M-56 140c0-80 22-170 56-170s56 90 56 170z"/></g>
+          <g class="persona" transform="translate(960 500)"><circle cx="0" cy="-70" r="30"/><path d="M-56 140c0-80 22-170 56-170s56 90 56 170z"/></g>
+          <g class="persona" transform="translate(1130 520)"><circle cx="0" cy="-70" r="30"/><path d="M-56 120c0-80 22-150 56-150s56 70 56 150z"/></g>
+        </g>
+        <g id="pila"></g>
+        <text id="contador" x="1300" y="610" class="contador" text-anchor="middle">0</text>
+        <text x="1300" y="632" class="contador-et" text-anchor="middle">mensajes sin leer</text>
+      </g>
+
+      <!-- III · la máquina de escribir y la carta -->
+      <g id="escritura">
+        <rect class="pared" width="1600" height="900"/>
+        <g id="hoja">
+          <rect x="460" y="100" width="680" height="560" fill="url(#g-papel)" class="hoja"/>
+          <g clip-path="url(#c-hoja)">
+            <text x="510" y="160" class="carta-cabeza">SECRETO · SOLO PARA EL PRIMER MINISTRO</text>
+            <text x="510" y="212" class="carta-linea" id="l1"></text>
+            <text x="510" y="248" class="carta-linea" id="l2"></text>
+            <text x="510" y="284" class="carta-linea" id="l3"></text>
+            <text x="510" y="320" class="carta-linea" id="l4"></text>
+            <text x="510" y="356" class="carta-linea" id="l5"></text>
+            <text x="510" y="414" class="carta-fecha" id="fecha"></text>
+            <g id="firmas">
+              <text x="510" y="490" class="firma" data-i="0">A. M. Turing</text>
+              <text x="830" y="490" class="firma" data-i="1">W. G. Welchman</text>
+              <text x="510" y="556" class="firma" data-i="2">C. H. O'D. Alexander</text>
+              <text x="830" y="556" class="firma" data-i="3">P. S. Milner-Barry</text>
+            </g>
+            <ellipse id="aro-alexander" cx="634" cy="547" rx="0" ry="0" class="aro"/>
+          </g>
+        </g>
+        <g id="maquina-escribir">
+          <path class="me-cuerpo" d="M420 640h760l50 120H370z"/>
+          <rect class="me-rodillo" x="430" y="612" width="740" height="34" rx="17"/>
+          <g id="teclas"></g>
+        </g>
+      </g>
+
+      <!-- IV · el viaje a Londres -->
+      <g id="viaje">
+        <rect class="pared" width="1600" height="900"/>
+        <g class="reticula"></g>
+        <circle class="ciudad" cx="380" cy="300" r="14"/><text x="380" y="262" class="ciudad-et" text-anchor="middle">Bletchley Park</text>
+        <circle class="ciudad destino" cx="1220" cy="560" r="18"/><text x="1220" y="620" class="ciudad-et" text-anchor="middle">Londres · Downing Street, 10</text>
+        <path id="ruta" class="ruta" d="M380 300C620 300 760 420 900 470S1120 560 1220 560"/>
+        <g id="sobre"><rect x="-38" y="-26" width="76" height="52" rx="4" class="sobre"/><path d="M-38 -26L0 6 38 -26" class="sobre-pliegue"/></g>
+      </g>
+
+      <!-- V · Downing Street: la respuesta -->
+      <g id="respuesta">
+        <rect class="pared" width="1600" height="900"/>
+        <g id="puerta"><rect x="660" y="150" width="280" height="560" rx="8" class="puerta"/><path d="M660 290a140 140 0 0 1 280 0" class="puerta-arco"/><text x="800" y="420" class="puerta-num" text-anchor="middle">10</text><circle cx="900" cy="470" r="10" class="pomo"/></g>
+        <g id="minuta">
+          <rect x="520" y="160" width="560" height="560" fill="url(#g-papel)" class="hoja"/>
+          <text x="560" y="230" class="carta-linea tenue">Para el general Ismay:</text>
+          <text x="560" y="290" class="carta-linea" id="m1"></text>
+          <text x="560" y="326" class="carta-linea" id="m2"></text>
+          <text x="560" y="362" class="carta-linea" id="m3"></text>
+          <g id="etiqueta" transform="translate(800 520) rotate(-6)"><rect x="-230" y="-58" width="460" height="116" rx="8" class="etiqueta"/><text x="0" y="16" class="etiqueta-texto" text-anchor="middle">ACTION THIS DAY</text></g>
+        </g>
+      </g>
+
+      <!-- VI · llegan las máquinas -->
+      <g id="llegan">
+        <rect class="pared" width="1600" height="900"/>
+        <g id="bombes"></g>
+        <path id="signo-triangulo" d="M800 120l120 210H680z" class="signo"/>
+      </g>
+
+      <rect width="1600" height="900" filter="url(#f-grano)" fill="#000" opacity=".6" pointer-events="none"/>
+      <rect id="cortina" width="1600" height="900" fill="#06131D" opacity="0"/>
+    </svg>
+    <figcaption id="subtitulo" aria-live="polite"></figcaption>
+  </figure>
+
+  <div class="control" role="group" aria-label="Control de la escena">
+    <button type="button" id="btn-play" aria-label="Reproducir">▶</button>
+    <input type="range" id="tiempo" min="0" max="38" step="0.05" value="0" aria-label="Tiempo de la escena">
+    <span id="reloj">0:00 / 0:38</span>
+  </div>
+  <p class="fuente">Ilustración y textos propios, basados en el memorando del 21 de octubre de 1941 (National Archives, Reino Unido). No es una escena de la película.</p>
+</main>
+</body>
+</html>

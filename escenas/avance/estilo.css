@@ -1,0 +1,59 @@
+/* El avance — lenguaje «Enigma en grabado y tinta»: siluetas planas, crema/tinta/rojo/oro, el mundo hecho de rotores y letras. */
+:root{ --crema:#F1EADB; --crema-2:#E6DCC6; --tinta:#0A1F2E; --rojo:#C8102E; --oro:#E7B53A; --luz:#F5F3EF;
+  --forma-1:#006060; --forma-2:#00A080; --forma-3:#3DD9B0; --forma-4:#E08000; --forma-5:#E02040;
+  --f-display:'Fraunces', Georgia, serif; --f-texto:'IBM Plex Sans', system-ui, sans-serif; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:#05121B; color:var(--luz); font-family:var(--f-texto); }
+.sala{ min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:16px; }
+.pantalla{ position:relative; margin:0; width:min(100%, calc((100dvh - 150px) * 16 / 9)); aspect-ratio:16/9; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.6); background:var(--tinta); }
+#lienzo{ width:100%; height:100%; display:block; }
+#fondo{ fill:var(--tinta); }
+/* los textos del avance viven dentro del dibujo; el subtítulo queda solo para lectores de pantalla */
+.solo-lector{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; margin:0; }
+/* rótulo final (opacidad calculada con t; sin transiciones) */
+.nota.rotulo{ position:absolute; left:50%; bottom:4%; transform:translateX(-50%); margin:0; width:max-content; max-width:88%; text-align:center;
+  font-family:var(--f-texto); font-size:clamp(10px, 1.05vw, 17px); line-height:1.35; color:#4A5A63; opacity:0; text-wrap:balance; }
+html.incrustada .nota.rotulo{ font-size:clamp(10px, 1.15vw, 19px); }
+.control{ display:flex; align-items:center; gap:12px; width:min(100%, 900px); }
+#btn-play{ width:44px; height:44px; border-radius:50%; border:0; background:var(--luz); color:var(--tinta); font-size:16px; cursor:pointer; flex:none; }
+#btn-play:focus-visible, #tiempo:focus-visible{ outline:2px solid var(--forma-3); outline-offset:3px; }
+#tiempo{ flex:1; accent-color:var(--rojo); }
+#reloj{ font-variant-numeric:tabular-nums; font-size:14px; color:#AFC2CB; min-width:84px; text-align:right; }
+.fuente{ margin:0; font-size:12px; color:#7F98A6; text-align:center; max-width:900px; }
+html.incrustada .control, html.incrustada .fuente{ display:none; }
+html.incrustada .sala{ padding:0; } html.incrustada .pantalla{ width:100%; border-radius:0; box-shadow:none; }
+
+/* trazos */
+.guilloche path{ fill:none; stroke-width:1.1; }
+.tinta{ fill:var(--tinta); } .rojo{ fill:var(--rojo); } .oro{ fill:var(--oro); } .crema{ fill:var(--crema); } .crema-2{ fill:var(--crema-2); }
+.rotor-aro{ fill:none; stroke:var(--tinta); stroke-width:6; } .rotor-diente{ fill:var(--tinta); }
+.rotor-letra{ font-family:var(--f-texto); font-weight:600; font-size:22px; fill:var(--tinta); }
+.letra{ font-family:var(--f-texto); font-weight:600; font-size:20px; }
+.chorro{ font-family:var(--f-texto); font-weight:600; font-size:44px; }
+.digito{ font-family:var(--f-texto); font-weight:600; font-size:60px; fill:var(--oro); font-variant-numeric:tabular-nums; }
+.digito-suelto{ font-family:var(--f-texto); font-weight:600; font-size:28px; fill:var(--oro); }
+.golpe{ font-family:var(--f-display); font-weight:600; font-size:84px; fill:var(--tinta); }
+.golpe.claro{ fill:var(--luz); }
+.golpe-xl{ font-family:var(--f-display); font-weight:600; font-size:230px; fill:var(--luz); letter-spacing:.02em; }
+.golpe-cifra{ font-family:var(--f-display); font-weight:600; font-size:150px; fill:var(--luz); }
+.ceja{ font-family:var(--f-texto); font-weight:600; font-size:24px; letter-spacing:.28em; fill:var(--rojo); }
+.ceja.oro{ fill:var(--oro); }
+.palabra{ font-family:var(--f-texto); font-style:italic; font-size:30px; fill:var(--tinta); }
+.celda{ fill:#FBF7EE; stroke:#B9AE98; stroke-width:2; } .celda.on{ fill:var(--oro); stroke:var(--tinta); }
+.celda-letra{ font-family:var(--f-texto); font-weight:600; font-size:24px; fill:#8A7F6A; }
+.papel{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:3; }
+.renglon{ stroke:#B9AE98; stroke-width:3; }
+.papel-texto{ font-family:'Courier New', monospace; font-size:26px; fill:var(--tinta); }
+.sello{ fill:none; stroke:var(--rojo); stroke-width:8; } .sello-texto{ font-family:var(--f-texto); font-weight:700; font-size:58px; letter-spacing:.08em; fill:var(--rojo); }
+.plano-linea{ fill:none; stroke:var(--crema); stroke-width:3; } .plano-reticula{ stroke:#1F4A60; stroke-width:1.5; }
+.mapa{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:4; } .reticula{ stroke:#D9CFBA; stroke-width:2; }
+.tierra{ fill:var(--crema-2); stroke:var(--tinta); stroke-width:3; }
+.ruta{ fill:none; stroke:var(--tinta); stroke-width:4; stroke-dasharray:12 10; }
+.barco{ fill:var(--tinta); } .amenaza{ fill:var(--rojo); }
+.carpeta{ fill:var(--crema-2); stroke:var(--tinta); stroke-width:4; } .carpeta-texto{ font-family:var(--f-display); font-weight:600; font-size:96px; fill:var(--tinta); letter-spacing:.06em; }
+.titulo-grande{ font-family:var(--f-display); font-weight:600; font-size:118px; fill:var(--luz); }
+.signo-nombre{ font-family:var(--f-texto); font-weight:600; font-size:19px; letter-spacing:.16em; fill:#C9D3D8; }
+.remate{ font-family:var(--f-display); font-weight:600; font-size:132px; fill:var(--tinta); }
+.f1{ fill:var(--forma-1); } .f2{ fill:var(--forma-2); } .f3{ fill:var(--forma-3); } .f4{ fill:var(--forma-4); } .f5{ fill:var(--forma-5); }
+.signo{ stroke:var(--tinta); stroke-width:5; stroke-linejoin:round; }
+.signo.sobre-tinta{ stroke:var(--crema); stroke-width:3; }

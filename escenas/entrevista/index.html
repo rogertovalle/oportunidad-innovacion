@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La entrevista · escena animada</title>
+<meta name="description" content="Paso 1 · la idea como paradigma: el comandante ve en Enigma un problema de traducción; Turing, un rompecabezas de combinaciones. Escena animada con ilustración propia.">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="estilo.css">
+<script src="escena.js" defer></script>
+</head>
+<body>
+<main class="sala">
+  <figure class="pantalla">
+    <svg id="lienzo" viewBox="0 0 1600 900" role="img" aria-labelledby="e-titulo e-desc">
+      <title id="e-titulo">La entrevista: dos paradigmas</title>
+      <desc id="e-desc">Animación en siluetas: en la Segunda Guerra Mundial, Enigma cifra las comunicaciones del enemigo y descifrarlas daría ventaja. En el despacho, el comandante le pregunta a Turing si habla alemán; Turing dice que no y casi lo echan, pero lo frena diciendo que los códigos son un acertijo. La misma máquina vista desde dos lugares: para el comandante, un problema de traducción hecho de palabras; para Turing, un rompecabezas hecho de engranajes y combinaciones. La configuración cambia cada medianoche y hay unos 159 trillones de configuraciones posibles. En la vida real Turing llegó a Bletchley Park el 4 de septiembre de 1939. Cierre: las letras se juntan en el círculo del paradigma.</desc>
+      <defs>
+        <filter id="f-grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .09 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+        <clipPath id="c-izq-1"><rect x="0" y="0" width="800" height="900"/></clipPath>
+        <clipPath id="c-der-1"><rect x="800" y="0" width="800" height="900"/></clipPath>
+        <clipPath id="c-izq-2"><rect id="c-izq-2r" x="0" y="0" width="1600" height="900"/></clipPath>
+        <clipPath id="c-der-2"><rect id="c-der-2r" x="1600" y="0" width="0" height="900"/></clipPath>
+      </defs>
+      <rect id="fondo" width="1600" height="900"/>
+      <g id="mundo"></g>
+      <g id="letras-sueltas"></g>
+      <rect width="1600" height="900" filter="url(#f-grano)" fill="#000" pointer-events="none"/>
+      <rect id="cortina" width="1600" height="900" fill="#0A1F2E" opacity="1"/>
+    </svg>
+    <figcaption id="subtitulo" aria-live="polite"></figcaption>
+    <p id="nota" class="nota" aria-live="polite"></p>
+  </figure>
+  <div class="control" role="group" aria-label="Control de la escena">
+    <button type="button" id="btn-play" aria-label="Reproducir">▶</button>
+    <input type="range" id="tiempo" min="0" max="48" step="0.05" value="0" aria-label="Tiempo de la escena">
+    <span id="reloj">0:00 / 0:48</span>
+  </div>
+  <p class="fuente">Ilustración y textos propios. Cuenta el paso como lo plantea la película (<i>The Imitation Game</i>, 2014) y agrega lo que pasó en la vida real (Bletchley Park Trust; conteo de configuraciones de la Enigma militar de 3 rotores).</p>
+</main>
+</body>
+</html>

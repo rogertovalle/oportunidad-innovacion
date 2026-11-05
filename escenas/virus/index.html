@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La idea como virus · escena animada</title>
+<meta name="description" content="Acto III · la idea: una idea se instala, resiste, se contagia de mente en mente, lo cambia todo y puede extraerse e implantarse, tomando otra forma. Escena animada con ilustración propia.">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="estilo.css">
+<script src="escena.js" defer></script>
+</head>
+<body>
+<main class="sala">
+  <figure class="pantalla">
+    <svg id="lienzo" viewBox="0 0 1600 900" role="img" aria-labelledby="e-titulo e-desc">
+      <title id="e-titulo">La idea como virus</title>
+      <desc id="e-desc">Animación en siluetas: una cabeza de perfil guarda una semilla de luz dorada; una pinza intenta sacarla y la semilla resiste con raíces; la semilla salta de cabeza en cabeza en una red que cambia de color con cada contagio, y la red entera se reorganiza en un patrón nuevo; luego una pinza extrae la idea de una mente y la implanta en otra, donde pasa por los cinco signos y queda como triángulo; al cierre aparecen las cinco formas de la idea: paradigma, concepto, intención, solución y progreso.</desc>
+      <defs>
+        <filter id="f-grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .09 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+        <radialGradient id="g-luz"><stop offset="0" stop-color="#E7B53A" stop-opacity=".75"/><stop offset="1" stop-color="#E7B53A" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect id="fondo" width="1600" height="900"/>
+      <g id="mundo"></g>
+      <g id="puntos-sueltos"></g>
+      <rect width="1600" height="900" filter="url(#f-grano)" fill="#000" pointer-events="none"/>
+      <rect id="cortina" width="1600" height="900" fill="#0A1F2E" opacity="1"/>
+    </svg>
+    <figcaption id="subtitulo" aria-live="polite"></figcaption>
+    <p id="nota" class="nota" aria-live="polite"></p>
+  </figure>
+  <div class="control" role="group" aria-label="Control de la escena">
+    <button type="button" id="btn-play" aria-label="Reproducir">▶</button>
+    <input type="range" id="tiempo" min="0" max="43" step="0.05" value="0" aria-label="Tiempo de la escena">
+    <span id="reloj">0:00 / 0:43</span>
+  </div>
+  <p class="fuente">Ilustración y textos propios. Toma solo la metáfora general (una idea se propaga como un virus y puede extraerse e implantarse); no recrea ninguna película.</p>
+</main>
+</body>
+</html>

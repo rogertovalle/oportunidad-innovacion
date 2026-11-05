@@ -1,0 +1,74 @@
+/* La solución · paso 4 — lenguaje «Enigma en grabado y tinta» (misma base que la carta v2). */
+:root{ --crema:#F1EADB; --crema-2:#E6DCC6; --tinta:#0A1F2E; --rojo:#C8102E; --oro:#E7B53A; --verde:#00A080; --azul:#1F6F86; --forma-3:#3DD9B0; --luz:#F5F3EF;
+  --f-display:'Fraunces', Georgia, serif; --f-texto:'IBM Plex Sans', system-ui, sans-serif; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:#05121B; color:var(--luz); font-family:var(--f-texto); }
+.sala{ min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:16px; }
+.pantalla{ position:relative; margin:0; width:min(100%, calc((100dvh - 150px) * 16 / 9)); aspect-ratio:16/9; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.6); background:var(--crema); }
+#lienzo{ width:100%; height:100%; display:block; }
+#fondo{ fill:var(--crema); }
+#subtitulo{ position:absolute; left:50%; bottom:4.5%; transform:translateX(-50%); width:min(88%, 1150px); text-align:center; font-family:var(--f-display); font-weight:600;
+  font-size:clamp(14px, 2.15vw, 36px); line-height:1.22; color:var(--tinta); text-wrap:balance; padding:6px 16px; border-radius:10px; background:rgba(241,234,219,.88); width:auto; max-width:min(88%, 1150px); }
+#subtitulo.claro{ color:var(--luz); background:rgba(10,31,46,.72); }
+#subtitulo em{ font-style:italic; color:var(--rojo); } #subtitulo.claro em{ color:var(--oro); }
+.nota{ position:absolute; right:4%; top:22%; margin:0; max-width:32%; font-family:var(--f-texto); font-size:clamp(11px, 1.1vw, 18px); line-height:1.35; color:var(--tinta);
+  background:rgba(241,234,219,.92); border-left:4px solid var(--oro); padding:10px 14px; border-radius:0 8px 8px 0; opacity:0; }  /* sin transición: la opacidad ya es función de t */
+.nota b{ display:block; font-size:.78em; letter-spacing:.14em; text-transform:uppercase; color:#8A4B00; margin-bottom:4px; }
+.control{ display:flex; align-items:center; gap:12px; width:min(100%, 900px); }
+#btn-play{ width:44px; height:44px; border-radius:50%; border:0; background:var(--luz); color:var(--tinta); font-size:16px; cursor:pointer; flex:none; }
+#btn-play:focus-visible, #tiempo:focus-visible{ outline:2px solid var(--forma-3); outline-offset:3px; }
+#tiempo{ flex:1; accent-color:var(--rojo); }
+#reloj{ font-variant-numeric:tabular-nums; font-size:14px; color:#AFC2CB; min-width:84px; text-align:right; }
+.fuente{ margin:0; font-size:12px; color:#7F98A6; text-align:center; max-width:900px; }
+html.incrustada .control, html.incrustada .fuente{ display:none; }
+html.incrustada .sala{ padding:0; } html.incrustada .pantalla{ width:100%; border-radius:0; box-shadow:none; }
+
+/* trazos */
+.guilloche path{ fill:none; stroke-width:1.1; }
+.tinta{ fill:var(--tinta); } .rojo{ fill:var(--rojo); } .oro{ fill:var(--oro); } .crema{ fill:var(--crema); }
+.rotor-aro{ fill:none; stroke:var(--tinta); stroke-width:6; } .rotor-diente{ fill:var(--tinta); }
+.titulo-grande{ font-family:var(--f-display); font-weight:600; font-size:120px; fill:var(--tinta); }
+.titulo-ceja{ font-family:var(--f-texto); font-weight:600; font-size:26px; letter-spacing:.24em; fill:var(--rojo); }
+.papel{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:3; }
+.papel-texto{ font-family:'Courier New', monospace; font-size:26px; fill:var(--tinta); }
+.sello{ fill:none; stroke:var(--rojo); stroke-width:8; } .sello-texto{ font-family:var(--f-texto); font-weight:600; font-size:54px; letter-spacing:.08em; fill:var(--rojo); }
+.etiqueta{ fill:var(--rojo); } .etiqueta-texto{ font-family:var(--f-texto); font-weight:600; font-size:54px; letter-spacing:.06em; fill:#FBF7EE; }
+.etiqueta-pelicula{ font-family:var(--f-texto); font-weight:600; font-size:20px; letter-spacing:.16em; fill:#8A4B00; }
+.aro{ fill:none; stroke:var(--oro); stroke-width:5; }
+/* reloj de la propuesta de valor */
+.esfera{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:6; } .tic{ stroke:var(--tinta); stroke-width:4; stroke-linecap:round; }
+.aguja{ stroke:var(--rojo); stroke-width:9; stroke-linecap:round; }
+.esfera-hora{ font-family:var(--f-texto); font-weight:600; font-size:30px; fill:var(--tinta); }
+.ventana{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:5; }
+.ventana-letra{ font-family:var(--f-texto); font-weight:600; font-size:84px; fill:var(--tinta); }
+.dia{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:3; } .dia-letra{ font-family:var(--f-texto); font-weight:600; font-size:26px; fill:var(--tinta); }
+.dia-raya{ stroke:var(--rojo); stroke-width:6; stroke-linecap:round; }
+.prop{ font-family:var(--f-display); font-weight:600; font-size:34px; fill:var(--tinta); }
+/* el mensaje y el espacio de búsqueda */
+.cifra{ font-family:'Courier New', monospace; font-weight:700; font-size:32px; }
+.resalte{ fill:var(--oro); opacity:.55; }
+.chico{ font-family:var(--f-texto); font-weight:600; font-size:20px; fill:#8A4B00; letter-spacing:.04em; }
+.contador{ font-family:var(--f-display); font-weight:600; font-size:76px; fill:var(--tinta); }
+.encajan{ font-family:var(--f-display); font-weight:600; font-size:54px; fill:var(--rojo); }
+.palabra-bar{ font-family:var(--f-display); font-weight:600; font-size:46px; fill:var(--rojo); }
+/* noche y máquina */
+.cabana{ fill:#06141E; } .ventanuco{ fill:var(--oro); }
+.maquina{ fill:#12324A; stroke:#2B5570; stroke-width:4; }
+.lampara{ fill:#3A1A20; stroke:var(--crema); stroke-width:3; }
+/* circuito */
+.cable{ fill:none; stroke:var(--tinta); stroke-width:4; } .cable-luz{ fill:none; stroke:#E08000; stroke-width:10; stroke-linecap:round; }
+.nodo{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:5; } .nodo-num{ font-family:var(--f-display); font-weight:600; font-size:56px; fill:var(--tinta); }
+.nodo-txt{ font-family:var(--f-display); font-weight:600; font-size:28px; fill:var(--tinta); }
+.meta{ fill:var(--oro); stroke:var(--tinta); stroke-width:5; }
+/* mapa */
+.mapa{ fill:#FBF7EE; stroke:var(--tinta); stroke-width:4; } .reticula{ stroke:#D9CFBA; stroke-width:2; }
+.tierra{ fill:var(--crema-2); stroke:var(--tinta); stroke-width:3; }
+.ruta{ fill:none; stroke:var(--tinta); stroke-width:3; stroke-dasharray:4 10; stroke-linecap:round; }
+.barco{ fill:var(--tinta); } .amenaza{ fill:var(--rojo); }
+.chincheta{ fill:var(--rojo); stroke:var(--tinta); stroke-width:2; } .hilo{ stroke:var(--rojo); stroke-width:2; }
+.linea-aviso{ fill:none; stroke:var(--tinta); stroke-width:5; stroke-linecap:round; }
+.corte{ fill:none; stroke:var(--rojo); stroke-width:9; stroke-linecap:round; }
+/* vida real */
+.crib-letra{ font-family:'Courier New', monospace; font-weight:700; font-size:40px; }
+.nota-hoja{ font-family:var(--f-texto); font-size:23px; fill:var(--tinta); }
+.rombo{ fill:#E08000; stroke:var(--tinta); stroke-width:5; stroke-linejoin:round; }
